@@ -1,4 +1,4 @@
-stellar-faucet
+##stellar-faucet
 
 A faucet that can be used to give testnet kin to users
 
@@ -23,7 +23,7 @@ python main.py <seed to faucet account>
 
 ## Endpoints:
 **GET '/status'**  
-```json
+```
 {
 'address': 'GBDUPSZP4APH3PNFIMYMTHIGCQQ2GKTPRBDTPCORALYRYJZJ35O2LOBL',
  'network': 'TESTNET',
@@ -41,7 +41,7 @@ python main.py <seed to faucet account>
 ```
 
 **GET '/fund?account=\<address\>'**
-```json
+```
 {
 'succsseful': True/False
 'error': None/'Account does not exist'/'No KIN trustline established'/'Invalid address'
