@@ -1,7 +1,10 @@
-from flask import Flask, request
-import kin
 import json
 import sys
+
+from flask import Flask, request
+import kin
+from kin import errors as kin_errors
+
 
 app = Flask(__name__)
 
@@ -29,23 +32,20 @@ def fund():
 
 def send_kin(destination):
     try:
-        # Kin SDK does not throw an exception for no trust/not activated,
-        # so I need to check that before
-
-        if not sdk.check_account_exists(destination):
-            return False,"Account does not exist"
-
-        if not sdk.check_account_activated(destination):
-            return False,"No KIN trustline established"
-
 
         sdk.send_kin(destination, 4000)
-        return True,None
+        return True, None
+
+    except kin_errors.AccountNotFoundError:
+        return False, "Account does not exist"
+
+    except kin_errors.AccountNotActivatedError:
+        return False,"No KIN trustline established"
 
     except Exception as e:
         if 'invalid address' in str(e):
             return False,'Invalid address'
-        # If i get an unexcpected error, return it
+        # If i get an unexpected error, return it
         else:
             return False,'unexpcted error: {}'.format(str(e))
 
