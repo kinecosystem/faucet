@@ -1,4 +1,4 @@
-##stellar-faucet
+# stellar-faucet
 
 A faucet that can be used to give testnet kin to users
 
