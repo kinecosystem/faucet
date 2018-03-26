@@ -13,41 +13,60 @@ app = Flask(__name__)
 def status():
     # Return sdk status in json, if fails, returns the exception
     try:
-        return str(sdk.get_status())
+        return str(json.dumps(sdk.get_status())), 200
     except Exception as e:
-        return str(e)
+        return str(e), 500
+
 
 @app.route("/fund")
 def fund():
     # Funds an account with 4000 kin , if fails, returns the corresponding error message
 
     destination = request.args.get('account')
-    response = send_kin(destination)
-    data = {}
-    data['successful'] = response[0]
-    data['error'] = response[1]
+    amount = request.args.get('amount')
+    response = send_kin(destination,amount)
+    data = {'successful': response[0],
+            'error': response[1]}
     json_response = json.dumps(data)
 
-    return json_response
+    return json_response, response[2]
 
-def send_kin(destination):
+
+def send_kin(destination,amount):
+    # Verify that I got both variables
+    if destination is None:
+        return False, 'No account', 400
+    if amount is None:
+        return False, 'No amount', 400
+
+    # Verify amount is a number
     try:
+        amount = float(amount)
+    except ValueError:
+        return False, 'Invalid amount', 400
+    except Exception as e:
+        return False, 'unexpected error: {}'.format(str(e)), 500
 
-        sdk.send_kin(destination, 4000)
-        return True, None
+    # Fund the account
+    try:
+        sdk.send_kin(destination, amount)
+        return True, None, 200
 
+    # If the account is not created yet
     except kin_errors.AccountNotFoundError:
-        return False, "Account does not exist"
+        return False, 'Account does not exist', 400
 
+    # If the account has no trustline
     except kin_errors.AccountNotActivatedError:
-        return False,"No KIN trustline established"
+        return False, 'No KIN trustline established', 400
 
     except Exception as e:
         if 'invalid address' in str(e):
-            return False,'Invalid address'
+            return False, 'Invalid address', 400
         # If i get an unexpected error, return it
         else:
-            return False,'unexpcted error: {}'.format(str(e))
+            return False, 'unexpected error: {}'.format(str(e)), 500
+
 
 def main():
     global sdk

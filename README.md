@@ -22,6 +22,10 @@ python main.py <seed to faucet account>
 ```
 
 ## Endpoints:
+Success will return http code 200  
+Excpected errors will return http code 400  
+Unexpected errors will return http code 500
+
 **GET '/status'**  
 ```
 {
@@ -40,11 +44,11 @@ python main.py <seed to faucet account>
 
 ```
 
-**GET '/fund?account=\<address\>'**
+**GET '/fund?account=\<account\>&amount=\<amount\>'**
 ```
 {
 'succsseful': True/False
-'error': None/'Account does not exist'/'No KIN trustline established'/'Invalid address'
+'error': None/'Account does not exist'/'No KIN trustline established'/'Invalid address'/'No amount'/'No account'/'Invalid amount'
 }
 ```
 
