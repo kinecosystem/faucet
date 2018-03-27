@@ -44,7 +44,7 @@ Unexpected errors will return http code 500
 
 OR
 
-{"error" : 'exception message'}  
+{"error" : 'unexpected error: exception message'}  
 
 ```
 

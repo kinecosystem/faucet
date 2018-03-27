@@ -13,9 +13,9 @@ app = Flask(__name__)
 def status():
     # Return sdk status in json, if fails, returns the exception
     try:
-        return str(json.dumps(sdk.get_status())), 200
+        return json.dumps(sdk.get_status()), 200
     except Exception as e:
-        response = {'error': str(e)}
+        response = {'error': 'unexpected error: ' + str(e)}
         return json.dumps(response), 500
 
 
