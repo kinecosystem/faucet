@@ -42,6 +42,10 @@ Unexpected errors will return http code 500
     }
 }
 
+OR
+
+{"error" : 'exception message'}  
+
 ```
 
 **GET '/fund?account=\<account\>&amount=\<amount\>'**

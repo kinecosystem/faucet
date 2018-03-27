@@ -15,7 +15,8 @@ def status():
     try:
         return str(json.dumps(sdk.get_status())), 200
     except Exception as e:
-        return str(e), 500
+        response = {'error': str(e)}
+        return json.dumps(response), 500
 
 
 @app.route("/fund")
