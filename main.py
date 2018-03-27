@@ -20,52 +20,52 @@ def status():
 
 @app.route("/fund")
 def fund():
-    # Funds an account with 4000 kin , if fails, returns the corresponding error message
+    # Funds an account with <amount> kin , if fails, returns the corresponding error message
 
     destination = request.args.get('account')
     amount = request.args.get('amount')
     response = send_kin(destination,amount)
-    data = {'successful': response[0],
-            'error': response[1]}
+    data = {'successful': True if response[1] == 200 else False,
+            'error': response[0]}
     json_response = json.dumps(data)
 
-    return json_response, response[2]
+    return json_response, response[1]
 
 
 def send_kin(destination,amount):
     # Verify that I got both variables
     if destination is None:
-        return False, 'No account', 400
+        return 'No account', 400
     if amount is None:
-        return False, 'No amount', 400
+        return 'No amount', 400
 
     # Verify amount is a number
     try:
         amount = float(amount)
     except ValueError:
-        return False, 'Invalid amount', 400
+        return 'Invalid amount', 400
     except Exception as e:
-        return False, 'unexpected error: {}'.format(str(e)), 500
+        return 'unexpected error: {}'.format(str(e)), 500
 
     # Fund the account
     try:
         sdk.send_kin(destination, amount)
-        return True, None, 200
+        return None, 200
 
     # If the account is not created yet
     except kin_errors.AccountNotFoundError:
-        return False, 'Account does not exist', 400
+        return 'Account does not exist', 400
 
     # If the account has no trustline
     except kin_errors.AccountNotActivatedError:
-        return False, 'No KIN trustline established', 400
+        return 'No KIN trustline established', 400
 
     except Exception as e:
         if 'invalid address' in str(e):
-            return False, 'Invalid address', 400
+            return 'Invalid address', 400
         # If i get an unexpected error, return it
         else:
-            return False, 'unexpected error: {}'.format(str(e)), 500
+            return 'unexpected error: {}'.format(str(e)), 500
 
 
 def main():
