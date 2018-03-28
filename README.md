@@ -18,7 +18,7 @@ pipenv shell
 ```
 Run the script  
 ```
-python main.py <seed to faucet account>
+python main.py <TESTNET/MAINNET> <seed to faucet account>
 ```
 
 ## Endpoints:
@@ -52,7 +52,7 @@ OR
 ```
 {
 'succsseful': True/False
-'error': None/'Account does not exist'/'No KIN trustline established'/'Invalid address'/'No amount'/'No account'/'Invalid amount'
+'error': None/'Account does not exist'/'No KIN trustline established'/'Invalid address'/'Amount parameter missing'/'Account parameter missing'/'Invalid amount'
 }
 ```
 

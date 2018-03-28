@@ -9,6 +9,7 @@ url = "https://pypi.python.org/simple"
 
 flask = "*"
 kin = {git = "https://github.com/kinfoundation/kin-core-python.git"}
+flask-cors = "*"
 
 
 [dev-packages]
