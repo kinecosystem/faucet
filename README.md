@@ -32,9 +32,9 @@ Unexpected errors will return http code 500
 'address': 'GBDUPSZP4APH3PNFIMYMTHIGCQQ2GKTPRBDTPCORALYRYJZJ35O2LOBL',
  'network': 'TESTNET',
  'channels': {'all': 1, 'free': 1},
- 'horizon': {'online': True,
+ 'horizon': {'online': true,
  	'uri': 'https://horizon-testnet.stellar.org',
- 	'error': None},
+ 	'error': null},
  'kin_asset': 
  	{
     	'issuer': 'GCKG5WGBIJP74UDNRIRDFGENNIH5Y3KBI5IHREFAJKV4MQXLELT7EX6V',
@@ -51,8 +51,8 @@ OR
 **GET '/fund?account=\<account\>&amount=\<amount\>'**
 ```
 {
-'succsseful': True/False
-'error': None/'Account does not exist'/'No KIN trustline established'/'Invalid address'/'Amount parameter missing'/'Account parameter missing'/'Invalid amount'
+'succsseful': true/false
+'error': null/'Account does not exist'/'No KIN trustline established'/'Invalid address'/'Amount parameter missing'/'Account parameter missing'/'Invalid amount'
 }
 ```
 
