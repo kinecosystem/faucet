@@ -2,4 +2,3 @@
 .idea/
 *.pyc
 __pycache__/
-seeds.txt
