@@ -73,7 +73,7 @@ def main():
     global sdk
     sdk = kin.SDK(network=sys.argv[1],
                   secret_key=sys.argv[2])
-    app.run()
+    app.run(host='0.0.0.0')
 
 
 if __name__ == '__main__':
