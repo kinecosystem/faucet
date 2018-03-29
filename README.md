@@ -16,9 +16,20 @@ Enter the pipenv shell:
 ```bash
 pipenv shell
 ```
+
+Edit the seeds.txt file: (channels are optional)  
+```  
+main seed  
+channel seed1  
+channel seed2
+.
+.
+.
+```  
+
 Run the script  
 ```
-python main.py <TESTNET/MAINNET> <seed to faucet account>
+python main.py <TESTNET/MAINNET>
 ```
 
 ## Endpoints:

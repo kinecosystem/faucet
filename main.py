@@ -69,11 +69,28 @@ def make_reply(status, error=None):
     return json.dumps(reply), status
 
 
+def get_seeds():
+    with open('seeds.txt','r') as myfile:
+        seeds = myfile.read().splitlines()
+
+    channels = None
+    primary = seeds[0]
+    if len(seeds) > 1:
+        channels = []
+        for i in range(1,len(seeds)):
+            channels.append(seeds[i])
+
+    return primary,channels
+
+
 def main():
     global sdk
+    primary, channels = get_seeds()
     sdk = kin.SDK(network=sys.argv[1],
-                  secret_key=sys.argv[2])
+                  secret_key=primary,
+                  channel_secret_keys=channels)
     app.run(host='0.0.0.0')
+
 
 
 if __name__ == '__main__':
