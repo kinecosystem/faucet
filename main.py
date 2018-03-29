@@ -12,6 +12,7 @@ CORS(app)
 
 @app.route("/status")
 def status():
+    print(__name__)
     # Return sdk status in json, if fails, returns the exception
     try:
         return json.dumps(sdk.get_status()), 200
@@ -86,12 +87,11 @@ def get_seeds():
 def main():
     global sdk
     primary, channels = get_seeds()
-    sdk = kin.SDK(network=sys.argv[1],
+    sdk = kin.SDK(network='TESTNET',
                   secret_key=primary,
                   channel_secret_keys=channels)
-    app.run(host='0.0.0.0')
 
 
 
-if __name__ == '__main__':
+if __name__ == 'main':
     main()

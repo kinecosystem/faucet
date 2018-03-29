@@ -29,7 +29,7 @@ channel seed2
 
 Run the script  
 ```
-python main.py <TESTNET/MAINNET>
+gunicorn -w 4 -b 0.0.0.0:5000 main:app  
 ```
 
 ## Endpoints:
