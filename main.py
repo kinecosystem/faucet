@@ -12,7 +12,6 @@ CORS(app)
 
 @app.route("/status")
 def status():
-    print(__name__)
     # Return sdk status in json, if fails, returns the exception
     try:
         return json.dumps(sdk.get_status()), 200
