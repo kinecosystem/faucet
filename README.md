@@ -3,7 +3,7 @@
 A faucet that can be used to give testnet kin to users
 
 ## Prerequisites:
-Built to work on python 3.x
+Built to work on python 3.6
 
 Install the dependencies:
 ```
