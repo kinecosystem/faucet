@@ -1,5 +1,5 @@
 # User-specific stuff:
 .idea/
 *.pyc
-seeds.txt
+/seeds.txt
 __pycache__/

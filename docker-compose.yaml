@@ -2,6 +2,6 @@ version: '3'
 
 services:
   faucet:
-    image: stellar-faucet:0.2
+    image: stellar-faucet:0.3
     ports:
       - 5000:5000/tcp
