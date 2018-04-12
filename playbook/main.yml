@@ -4,7 +4,7 @@
     - angstwad.docker_ubuntu
 
   tasks:
-    - name: create folder directory
+    - name: create project directory
       file:
         path: /opt/stellar-faucet
         state: directory
