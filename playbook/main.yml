@@ -1,0 +1,20 @@
+---
+- hosts: faucet
+  roles: 
+    - angstwad.docker_ubuntu
+
+  tasks:
+    - name: create folder directory
+      file:
+        path: /opt/stellar-faucet
+        state: directory
+
+    - name: copy files to the remote machine
+      copy: src={{ item.src }} dest={{ item.dest }}
+      with_items:
+        - { src: '../docker-compose.yaml', dest: '/opt/stellar-faucet/docker-compose.yaml' }
+        - { src: '../seeds.txt', dest: '/opt/stellar-faucet/seeds.txt' }
+
+    - name: run the docker-compose file
+      docker_service:
+        project_src: /opt/stellar-faucet
