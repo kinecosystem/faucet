@@ -22,6 +22,7 @@ channel seed 5
 ```bash
 $ sudo docker-compose up
 ```
+The faucet will run on localhost:5000
 
 ## Deploy to a remote machine:
 (This assumes that the remote machine has ubuntu 16+ installed)  
@@ -35,7 +36,7 @@ $ ansible-galaxy install angstwad.docker_ubuntu -p playbook/roles/
 ```bash
 $ ansible-playbook -i playbook/inventory/ playbook/main.yml
 ```
-
+The faucet will run on <ip>:5000
 
 ## Endpoints:
 Success will return http code 200  
