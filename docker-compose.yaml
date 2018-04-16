@@ -2,6 +2,10 @@ version: '3'
 
 services:
   faucet:
-    image: stellar-faucet:0.3
+    image: kinecosystem/stellar-faucet:0.5
     ports:
       - 5000:5000/tcp
+    environment:
+      SEEDS_NUMBER: 9
+    volumes:
+      - ./seeds.txt:/opt/stellar-faucet/seeds.txt
