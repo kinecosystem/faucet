@@ -2,10 +2,13 @@ version: '3'
 
 services:
   faucet:
-    image: kinecosystem/stellar-faucet:0.5
+    image: kinecosystem/stellar-faucet:0.6
     ports:
       - 5000:5000/tcp
     environment:
       SEEDS_NUMBER: 9
+      HORIZON_ENDPOINT: https://horizon-testnet.stellar.org/
+      NETWORK_PASSPHRASE: Test SDF Network ; September 2015
+      KIN_ISSUER: GCKG5WGBIJP74UDNRIRDFGENNIH5Y3KBI5IHREFAJKV4MQXLELT7EX6V
     volumes:
       - ./seeds.txt:/opt/stellar-faucet/seeds.txt

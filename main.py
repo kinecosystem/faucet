@@ -1,10 +1,12 @@
 import json
-import sys
+import os
 
 from flask import Flask, request
 from flask_cors import CORS
 import kin
 from kin import errors as kin_errors
+from stellar_base.network import NETWORKS
+from stellar_base.asset import Asset
 
 app = Flask(__name__)
 CORS(app)
@@ -86,10 +88,13 @@ def get_seeds():
 def main():
     global sdk
     primary, channels = get_seeds()
-    sdk = kin.SDK(network='TESTNET',
-                  secret_key=primary,
-                  channel_secret_keys=channels)
+    NETWORKS['CUSTOM'] = os.environ['NETWORK_PASSPHRASE']
 
+    sdk = kin.SDK(network='CUSTOM',
+                  secret_key=primary,
+                  channel_secret_keys=channels,
+                  horizon_endpoint_uri=os.environ['HORIZON_ENDPOINT'],
+                  kin_asset=Asset('KIN',os.environ['KIN_ISSUER']))
 
 
 if __name__ == 'main':

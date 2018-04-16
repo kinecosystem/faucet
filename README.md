@@ -14,7 +14,7 @@ channel seed 5
 .  
 .
 ```
-2. Edit the docker-compose.yaml file and update the number of seeds (default 9)
+2. Edit the docker-compose.yaml file and update the enviormental variables
 
 ## Run locally:
 1. Install [docker and docker-compose](https://docs.docker.com/install/)
