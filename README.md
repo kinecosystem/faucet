@@ -1,9 +1,13 @@
 # stellar-faucet
+This service can be used to fund accounts with kin  
+The main repository is at [github.com/kinecosystem/stellar-faucet](https://github.com/kinecosystem/stellar-faucet)
 
-A faucet that can be used to give testnet kin to users
-
+# Set up the faucet service  
 ## Prerequisites:
-1. Edit the 'seeds.txt' file with the seeds and channels you wish to use
+
+1. Edit the 'seeds.txt' file with the seeds and channels you wish to use.  
+   The main seed is mandatory, and all of the kin funded will be taken from this account.  
+   Channel seeds are optional and are used to improve the handling of high number of requests at the same time.
 ```
 main seed  
 channel seed 2  
@@ -14,7 +18,7 @@ channel seed 5
 .  
 .
 ```
-2. Edit the docker-compose.yaml file and update the enviormental variables
+2. Edit the docker-compose.yaml file and update the environmental variables  
 
 ## Run locally:
 1. Install [docker and docker-compose](https://docs.docker.com/install/)
@@ -36,9 +40,9 @@ $ ansible-galaxy install angstwad.docker_ubuntu -p playbook/roles/
 ```bash
 $ ansible-playbook -i playbook/inventory/ playbook/main.yml
 ```
-The faucet will run on <ip>:5000
+The faucet will run on \<ip>:5000
 
-## Endpoints:
+# Endpoints:  
 Success will return http code 200  
 Excpected errors will return http code 400  
 Unexpected errors will return http code 500
@@ -47,21 +51,30 @@ Unexpected errors will return http code 500
 ```
 {
 'address': 'GBDUPSZP4APH3PNFIMYMTHIGCQQ2GKTPRBDTPCORALYRYJZJ35O2LOBL',
- 'network': 'TESTNET',
- 'channels': {'all': 8, 'free': 8},
- 'horizon': {'online': true,
- 	'uri': 'https://horizon-testnet.stellar.org',
- 	'error': null},
- 'kin_asset': 
- 	{
-    	'issuer': 'GCKG5WGBIJP74UDNRIRDFGENNIH5Y3KBI5IHREFAJKV4MQXLELT7EX6V',
-        'code': 'KIN'
+'network': 'TESTNET',
+'channels': 
+    {
+    'all': 8, 
+    'free': 8
+    },
+'horizon': 
+    {
+    'online': true,
+    'uri': 'https://horizon-testnet.stellar.org',
+    'error': null
+    },
+'kin_asset': 
+	{
+    'issuer': 'GCKG5WGBIJP74UDNRIRDFGENNIH5Y3KBI5IHREFAJKV4MQXLELT7EX6V',
+    'code': 'KIN'
     }
 }
 
 OR
 
-{"error" : 'unexpected error: exception message'}  
+{
+"error": 'unexpected error: exception message'
+}  
 
 ```
 
@@ -74,4 +87,3 @@ OR
          'unexcpected error: exception message'
 }
 ```
-
