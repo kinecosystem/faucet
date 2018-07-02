@@ -7,4 +7,4 @@ RUN apk add -qU --no-cache -t .devstuff gcc musl-dev git \
     &&  pipenv install \
     &&  apk del -q .devstuff
 EXPOSE 5000
-CMD pipenv run gunicorn -w $SEEDS_NUMBER -b 0.0.0.0:5000 main:app
+CMD pipenv run gunicorn --threads=$(expr $SEEDS_NUMBER \* 2) -b 0.0.0.0:5000 main:app
