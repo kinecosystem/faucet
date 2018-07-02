@@ -4,7 +4,7 @@ services:
   faucet:
     image: kinecosystem/stellar-faucet:d4e6db
     ports:
-      - 5000:5000/tcp
+      - 80:5000
     environment:
       SEEDS_NUMBER: 4
       HORIZON_ENDPOINT: https://horizon-testnet.stellar.org/
