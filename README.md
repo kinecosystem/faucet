@@ -1,4 +1,4 @@
-# stellar-laboratory
+# Kin-Faucet
 This service can be used to fund accounts with KIN  
 
 # Set up the faucet service  
